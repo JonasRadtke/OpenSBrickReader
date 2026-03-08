@@ -1,10 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/write"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.openSBrickReader.WriteActivity">
+
+    <ScrollView
+        android:id="@+id/scrollViewWrite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/writeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Titel -->
+            <TextView
+                android:id="@+id/textViewWriteTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Write NFC Data"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- Load Binary Button -->
+            <Button
+                android:id="@+id/writeTile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Load Binary File" />
+
+            <!-- Status -->
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status: Waiting..."
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:background="#EEEEEE"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Write Button -->
+            <Button
+                android:id="@+id/btWriteToTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Write Data To NFC Tag" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

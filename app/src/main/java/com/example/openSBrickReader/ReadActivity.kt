@@ -14,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.os.Environment
-import java.io.File
 import android.widget.Toast
+import android.content.ContentValues
+import android.provider.MediaStore
+import java.io.IOException
 
 class ReadActivity : AppCompatActivity() {
 
@@ -179,13 +181,21 @@ class ReadActivity : AppCompatActivity() {
         try {
             val fileName = "$uid.bin"
 
-            val downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-            if (!downloadsFolder.exists()) downloadsFolder.mkdirs()
+            val resolver = contentResolver
+            val contentValues = ContentValues().apply {
+                put(MediaStore.Downloads.DISPLAY_NAME, fileName)
+                put(MediaStore.Downloads.MIME_TYPE, "application/octet-stream")
+                put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
+            }
 
-            val file = File(downloadsFolder, fileName)
-            file.writeBytes(allData)
+            val uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
+                ?: throw IOException("Konnte Datei nicht erstellen")
 
-            Toast.makeText(this, "Daten gespeichert: ${file.absolutePath}", Toast.LENGTH_LONG).show()
+            resolver.openOutputStream(uri).use { outputStream ->
+                outputStream?.write(allData)
+            }
+
+            Toast.makeText(this, "Daten gespeichert: $fileName", Toast.LENGTH_LONG).show()
 
         } catch (e: Exception) {
             Toast.makeText(this, "Fehler beim Speichern: ${e.message}", Toast.LENGTH_LONG).show()

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/read"
     android:layout_width="match_parent"
@@ -14,49 +13,73 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/read1"
+            android:id="@+id/mainLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="20dp">
 
+            <!-- Titel -->
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Read and Save NFC Data"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- Save Button -->
             <Button
                 android:id="@+id/buttonSave"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Speichern" />
+                android:layout_marginBottom="20dp"
+                android:text="Save Binary (to Download folder)" />
 
+            <!-- UID -->
             <TextView
                 android:id="@+id/tvUID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="UID wird hier angezeigt"
-                android:textSize="20sp"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="102dp" />
+                android:text="UID: ??"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
+            <!-- Config -->
             <TextView
                 android:id="@+id/tvConfig"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Config wird hier angezeigt"
+                android:text="Config: ??"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@+id/tvUID"
-                tools:layout_editor_absoluteX="113dp" />
+                android:layout_marginBottom="16dp" />
 
+            <!-- Data Label -->
+            <TextView
+                android:id="@+id/tvDataLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <!-- NFC Data -->
             <TextView
                 android:id="@+id/tvBlocks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Config wird hier angezeigt"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/tvConfig"
-                tools:layout_editor_absoluteX="39dp" />
+                android:text="Waiting for NFC tag..."
+                android:textSize="14sp"
+                android:typeface="monospace"
+                android:background="#EEEEEE"
+                android:padding="12dp" />
 
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
